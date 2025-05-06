@@ -1,0 +1,26 @@
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-content">
+      <div class="footer-info">
+        <h3>{{ metadata.title }}</h3>
+        <p>{{ metadata.description }}</p>
+      </div>
+      <div class="footer-nav">
+        <h4>Links</h4>
+        <ul>
+          {% for item in navigation.items %}
+            <li><a href="{{ item.url }}">{{ item.text }}</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+      <div class="footer-contact">
+        <h4>Follow Us</h4>
+        <p>Stay updated with our latest engineering insights and tutorials.</p>
+        <a href="https://www.linkedin.com/company/tactful-ai/" target="_blank" rel="noopener" class="button">Follow on LinkedIn</a>
+      </div>
+    </div>
+    <div class="footer-copyright">
+      <p>&copy; {{ global.currentYear or ("now" | date("YYYY")) }} {{ metadata.author.name }}. All rights reserved.</p>
+    </div>
+  </div>
+</footer>

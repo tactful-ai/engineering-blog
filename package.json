@@ -1,0 +1,28 @@
+{
+  "name": "@tactful/engineering-blog",
+  "version": "1.0.0",
+  "description": "An 11ty powered engineering blog",
+  "main": ".eleventy.js",
+  "scripts": {
+    "start": "eleventy --serve",
+    "build": "eleventy",
+    "clean": "rm -rf _site"
+  },
+  "keywords": [
+    "eleventy",
+    "11ty",
+    "blog"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@11ty/eleventy-plugin-syntaxhighlight": "^5.0.0"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^3.0.0",
+    "@11ty/eleventy-plugin-rss": "^2.0.3",
+    "luxon": "^3.6.1",
+    "markdown-it": "^14.1.0",
+    "markdown-it-anchor": "^9.2.0"
+  }
+}

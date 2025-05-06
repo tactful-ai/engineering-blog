@@ -1,0 +1,144 @@
+---
+layout: layouts/base.njk
+title: Tactful Engineering Blog
+description: Technical insights, tutorials, and best practices from our engineering team
+eleventyExcludeFromCollections: false
+---
+
+<section class="hero">
+  <div class="container">
+    <div class="hero-content">
+      <h1>Engineering Excellence, Tactfully Shared</h1>
+      <p>Dive into our technical insights, tutorials, and best practices from the Tactful Engineering team.</p>
+      <a href="/blog/" class="button">Explore Our Articles</a>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-title">
+      <h2>Latest Articles</h2>
+    </div>
+    
+    {% set postslist = collections.posts | reverse %}
+    {% set postslistCounter = postslist | length %}
+    {% if postslistCounter > 0 %}
+    <div class="posts-grid">
+      {% for post in postslist | head(6) %}
+      <article class="post-card">
+        {% if post.data.featured_image %}
+        <img src="{{ post.data.featured_image }}" alt="{{ post.data.title }}" class="post-card__image">
+        {% else %}
+        <img src="/assets/images/post-placeholder.jpg" alt="{{ post.data.title }}" class="post-card__image">
+        {% endif %}
+        <div class="post-card__content">
+          <div class="post-card__date">{{ post.date | readableDate }}</div>
+          <h3 class="post-card__title">
+            <a href="{{ post.url }}">{{ post.data.title }}</a>
+          </h3>
+          <p class="post-card__excerpt">{{ post.data.description }}</p>
+          <a href="{{ post.url }}" class="post-card__link">
+            Read More
+            <i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+    {% else %}
+    <p>No posts yet!</p>
+    {% endif %}
+
+    <div style="text-align: center; margin-top: 2rem;">
+      <a href="/blog/" class="button">View All Articles</a>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="background-color: var(--color-background-alt);">
+  <div class="container">
+    <div class="section-title">
+      <h2>Featured Topics</h2>
+    </div>
+    
+    <div class="featured-topics" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem;">
+      <div class="featured-topic" style="text-align: center; padding: 2rem; background-color: var(--color-background); border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);">
+        <div style="margin-bottom: 1rem; font-size: 2.5rem; color: var(--color-primary);">
+          <i class="fa-solid fa-desktop"></i>
+        </div>
+        <h3>Frontend Development</h3>
+        <p>Modern web development techniques, frameworks, and best practices.</p>
+        <a href="/tags/frontend/" class="post-card__link">
+          Explore Articles
+          <i class="fa-solid fa-arrow-right"></i>
+        </a>
+      </div>
+      
+      <div class="featured-topic" style="text-align: center; padding: 2rem; background-color: var(--color-background); border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);">
+        <div style="margin-bottom: 1rem; font-size: 2.5rem; color: var(--color-primary);">
+          <i class="fa-solid fa-brain"></i>
+        </div>
+        <h3>AI & Machine Learning</h3>
+        <p>Insights into intelligent systems, algorithms, and data-driven innovation.</p>
+        <a href="/tags/ai/" class="post-card__link">
+          Explore Articles
+          <i class="fa-solid fa-arrow-right"></i>
+        </a>
+      </div>
+      
+      <div class="featured-topic" style="text-align: center; padding: 2rem; background-color: var(--color-background); border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);">
+        <div style="margin-bottom: 1rem; font-size: 2.5rem; color: var(--color-primary);">
+          <i class="fa-solid fa-server"></i>
+        </div>
+        <h3>DevOps & Infrastructure</h3>
+        <p>Tools and practices for efficient development operations and reliable deployments.</p>
+        <a href="/tags/devops/" class="post-card__link">
+          Explore Articles
+          <i class="fa-solid fa-arrow-right"></i>
+        </a>
+      </div>
+      
+      <div class="featured-topic" style="text-align: center; padding: 2rem; background-color: var(--color-background); border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);">
+        <div style="margin-bottom: 1rem; font-size: 2.5rem; color: var(--color-primary);">
+          <i class="fa-solid fa-chart-line"></i>
+        </div>
+        <h3>Performance Optimization</h3>
+        <p>Techniques and strategies to make your applications faster and more efficient.</p>
+        <a href="/tags/performance/" class="post-card__link">
+          Explore Articles
+          <i class="fa-solid fa-arrow-right"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-title">
+      <h2>Why Tactful Engineering?</h2>
+    </div>
+    
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-bottom: 3rem;">
+      <div>
+        <h3>Expert Insights</h3>
+        <p>Our blog features technical articles written by experienced engineers who are hands-on with the latest technologies and best practices.</p>
+      </div>
+      
+      <div>
+        <h3>Real-World Solutions</h3>
+        <p>We share practical solutions to complex problems we've encountered and solved in production environments.</p>
+      </div>
+      
+      <div>
+        <h3>Community Focus</h3>
+        <p>We believe in giving back to the tech community by sharing knowledge that helps others grow professionally.</p>
+      </div>
+    </div>
+    
+    <div style="text-align: center;">
+      <a href="https://tactful.ai/" class="button" target="_blank" rel="noopener">Learn More About Us</a>
+    </div>
+  </div>
+</section>

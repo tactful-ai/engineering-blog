@@ -1,0 +1,9 @@
+{
+  "title": "Engineering Blog",
+  "url": "https://engineering-blog.com",
+  "description": "An engineering blog built with Eleventy",
+  "author": {
+    "name": "Engineering Team",
+    "email": "team@engineering-blog.com"
+  }
+}

@@ -1,0 +1,100 @@
+---
+layout: layouts/base.njk
+---
+
+<article class="post">
+  <div class="container">
+    <header class="post-header">
+      <h1>{{ title }}</h1>
+      
+      <div class="post-meta">
+        <time datetime="{{ page.date | htmlDateString }}">{{ page.date | readableDate }}</time>
+        {% if author %}
+        • <span class="post-author">{{ author }}</span>
+        {% endif %}
+      </div>
+      
+      {% if tags %}
+      <div class="post-tags">
+        {% for tag in tags | filterTagList %}
+        <a href="/tags/{{ tag | slug }}/" class="post-tag">#{{ tag }}</a>
+        {% endfor %}
+      </div>
+      {% endif %}
+    </header>
+    
+    {% if featured_image %}
+    <img src="{{ featured_image }}" alt="{{ title }}" class="post-featured-image">
+    {% endif %}
+    
+    <div class="post-content">
+      {{ content | safe }}
+    </div>
+    
+    <div class="post-footer">
+      <div class="post-footer-inner">
+        <div class="post-share">
+          <span>Share:</span>
+          <a href="https://twitter.com/intent/tweet?url={{ page.url | url | absoluteUrl(metadata.url) }}&text={{ title | urlencode }}" target="_blank" rel="noopener" aria-label="Share on Twitter">
+            <i class="fab fa-twitter"></i>
+          </a>
+          <a href="https://www.linkedin.com/shareArticle?url={{ page.url | url | absoluteUrl(metadata.url) }}&title={{ title | urlencode }}" target="_blank" rel="noopener" aria-label="Share on LinkedIn">
+            <i class="fab fa-linkedin-in"></i>
+          </a>
+          <a href="mailto:?subject={{ title | urlencode }}&body=Check out this article: {{ page.url | url | absoluteUrl(metadata.url) }}" aria-label="Share via Email">
+            <i class="fas fa-envelope"></i>
+          </a>
+        </div>
+        
+        {% if author %}
+        <div class="post-author-bio">
+          <img src="/assets/images/authors/{{ author | slug }}.jpg" alt="{{ author }}" class="post-author-avatar" onerror="this.src='/assets/images/authors/default.jpg'">
+          <div class="post-author-info">
+            <div class="post-author-name">{{ author }}</div>
+            <div class="post-author-title">Engineering Team</div>
+          </div>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</article>
+
+<section class="section section-related-posts">
+  <div class="container">
+    <div class="section-title">
+      <h2>Related Articles</h2>
+    </div>
+    
+    {% set relatedPosts = collections.posts | related(tags, page.url) %}
+    {% if relatedPosts.length > 0 %}
+    <div class="posts-grid">
+      {% for post in relatedPosts | head(3) %}
+      <article class="post-card">
+        {% if post.data.featured_image %}
+        <img src="{{ post.data.featured_image }}" alt="{{ post.data.title }}" class="post-card__image">
+        {% else %}
+        <img src="/assets/images/post-placeholder.jpg" alt="{{ post.data.title }}" class="post-card__image">
+        {% endif %}
+        <div class="post-card__content">
+          <div class="post-card__date">{{ post.date | readableDate }}</div>
+          <h3 class="post-card__title">
+            <a href="{{ post.url }}">{{ post.data.title }}</a>
+          </h3>
+          <p class="post-card__excerpt">{{ post.data.description }}</p>
+          <a href="{{ post.url }}" class="post-card__link">
+            Read More
+            <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+    {% else %}
+    <div class="posts-empty">
+      <p>No related articles found.</p>
+      <a href="/blog/" class="button">View All Articles</a>
+    </div>
+    {% endif %}
+  </div>
+</section>

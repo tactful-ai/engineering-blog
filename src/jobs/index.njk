@@ -1,0 +1,147 @@
+---
+layout: layouts/base.njk
+title: Jobs
+description: Join the Tactful Engineering team - explore career opportunities and open positions
+pagination:
+  data: collections.all
+  size: 10
+  alias: posts
+eleventyComputed:
+  jobs: "{{ collections.jobPositions }}"
+---
+
+<section class="hero" style="padding: 3rem 0;">
+  <div class="container">
+    <div class="hero-content">
+      <h1>Join Our Team</h1>
+      <p>Explore career opportunities at Tactful and help us build innovative solutions.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-title">
+      <h2>Open Positions</h2>
+    </div>
+    
+    <div class="jobs-list">
+      {%- for job in jobs -%}
+      <div class="job-card" style="margin-bottom: 2rem; padding: 1.5rem; border: 1px solid var(--color-border); border-radius: 8px; background-color: var(--color-background); transition: all 0.2s ease;">
+        <h3>{{ job.data.title }}</h3>
+        <div class="job-meta" style="display: flex; gap: 1.5rem; margin: 0.5rem 0 1rem; color: var(--color-text-light); font-size: 0.875rem;">
+          <div><i class="fas fa-map-marker-alt"></i> {{ job.data.location }}</div>
+          <div><i class="fas fa-briefcase"></i> {{ job.data.employmentType }}</div>
+          <div><i class="fas fa-clock"></i> Posted: {{ job.data.date | date('MMMM d, yyyy') }}</div>
+        </div>
+        
+        <p>{{ job.data.page.excerpt }}</p>
+        
+        <div class="job-skills" style="margin: 1rem 0;">
+          {%- for skill in job.data.skills -%}
+          <span style="display: inline-block; margin-right: 0.5rem; margin-bottom: 0.5rem; padding: 0.25rem 0.75rem; background-color: var(--color-background-alt); border-radius: 20px; font-size: 0.875rem;">{{ skill }}</span>
+          {%- endfor -%}
+        </div>
+        
+        <a href="{{ job.url }}" class="button">View Details</a>
+      </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+<section class="section" style="background-color: var(--color-background-alt);">
+  <div class="container">
+    <div class="section-title">
+      <h2>Why Work at Tactful?</h2>
+    </div>
+    
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem;">
+      <div class="benefit-card" style="text-align: center; padding: 2rem;">
+        <div style="font-size: 2.5rem; color: var(--color-primary); margin-bottom: 1rem;">
+          <i class="fas fa-laptop-code"></i>
+        </div>
+        <h3>Challenging Work</h3>
+        <p>Solve complex technical challenges and work on innovative products that make a difference.</p>
+      </div>
+      
+      <div class="benefit-card" style="text-align: center; padding: 2rem;">
+        <div style="font-size: 2.5rem; color: var(--color-primary); margin-bottom: 1rem;">
+          <i class="fas fa-globe"></i>
+        </div>
+        <h3>Remote-First</h3>
+        <p>Work from anywhere with flexible hours and a focus on results rather than time spent.</p>
+      </div>
+      
+      <div class="benefit-card" style="text-align: center; padding: 2rem;">
+        <div style="font-size: 2.5rem; color: var(--color-primary); margin-bottom: 1rem;">
+          <i class="fas fa-graduation-cap"></i>
+        </div>
+        <h3>Continuous Learning</h3>
+        <p>Professional development budget, access to learning platforms, and time to experiment with new technologies.</p>
+      </div>
+      
+      <div class="benefit-card" style="text-align: center; padding: 2rem;">
+        <div style="font-size: 2.5rem; color: var(--color-primary); margin-bottom: 1rem;">
+          <i class="fas fa-heart"></i>
+        </div>
+        <h3>Competitive Benefits</h3>
+        <p>Competitive salary, health insurance, retirement plans, and generous paid time off.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-title">
+      <h2>Our Hiring Process</h2>
+    </div>
+    
+    <div class="process-steps" style="max-width: 800px; margin: 0 auto;">
+      <div class="process-step" style="display: flex; margin-bottom: 2rem;">
+        <div class="process-step-number" style="flex: 0 0 50px; height: 50px; border-radius: 50%; background-color: var(--color-primary); color: white; display: flex; align-items: center; justify-content: center; font-weight: bold; margin-right: 1.5rem;">1</div>
+        <div>
+          <h3>Application Review</h3>
+          <p>We review your resume, portfolio, and application to ensure there's a good match with the role.</p>
+        </div>
+      </div>
+      
+      <div class="process-step" style="display: flex; margin-bottom: 2rem;">
+        <div class="process-step-number" style="flex: 0 0 50px; height: 50px; border-radius: 50%; background-color: var(--color-primary); color: white; display: flex; align-items: center; justify-content: center; font-weight: bold; margin-right: 1.5rem;">2</div>
+        <div>
+          <h3>Initial Interview</h3>
+          <p>A 30-minute call with our hiring manager to discuss your experience and learn more about the role.</p>
+        </div>
+      </div>
+      
+      <div class="process-step" style="display: flex; margin-bottom: 2rem;">
+        <div class="process-step-number" style="flex: 0 0 50px; height: 50px; border-radius: 50%; background-color: var(--color-primary); color: white; display: flex; align-items: center; justify-content: center; font-weight: bold; margin-right: 1.5rem;">3</div>
+        <div>
+          <h3>Technical Assessment</h3>
+          <p>A take-home assignment or live coding exercise relevant to the role you're applying for.</p>
+        </div>
+      </div>
+      
+      <div class="process-step" style="display: flex; margin-bottom: 2rem;">
+        <div class="process-step-number" style="flex: 0 0 50px; height: 50px; border-radius: 50%; background-color: var(--color-primary); color: white; display: flex; align-items: center; justify-content: center; font-weight: bold; margin-right: 1.5rem;">4</div>
+        <div>
+          <h3>Team Interviews</h3>
+          <p>Meet with members of the team you'll be working with to assess technical skills and cultural fit.</p>
+        </div>
+      </div>
+      
+      <div class="process-step" style="display: flex;">
+        <div class="process-step-number" style="flex: 0 0 50px; height: 50px; border-radius: 50%; background-color: var(--color-primary); color: white; display: flex; align-items: center; justify-content: center; font-weight: bold; margin-right: 1.5rem;">5</div>
+        <div>
+          <h3>Offer</h3>
+          <p>If we determine there's a good fit, we'll extend an offer to join our team!</p>
+        </div>
+      </div>
+    </div>
+    
+    <div style="text-align: center; margin-top: 3rem;">
+      <a href="mailto:careers@tactful.ai" class="button">Apply Now</a>
+    </div>
+  </div>
+</section>

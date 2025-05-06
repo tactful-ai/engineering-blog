@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% if title %}{{ title }} | {% endif %}Tactful Engineering</title>
+  <meta name="description" content="{% if description %}{{ description }}{% else %}Tactful Engineering Blog - Technical insights, tutorials, and best practices from our engineering team{% endif %}">
+  
+  <!-- Favicon -->
+  <link rel="icon" href="/assets/images/favicon.png" type="image/png">
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Styles -->
+  <link rel="stylesheet" href="/css/main.css">
+  
+  <!-- Open Graph / Social Media -->
+  <meta property="og:title" content="{% if title %}{{ title }}{% else %}Tactful Engineering{% endif %}">
+  <meta property="og:description" content="{% if description %}{{ description }}{% else %}Tactful Engineering Blog - Technical insights, tutorials, and best practices from our engineering team{% endif %}">
+  <meta property="og:image" content="{% if featured_image %}{{ featured_image }}{% else %}/assets/images/tactful-engineering-social.jpg{% endif %}">
+  <meta property="og:url" content="{{ page.url | url | absoluteUrl(metadata.url) }}">
+  <meta property="og:type" content="website">
+  
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="site-logo">
+        <a href="/">
+          <div style="display: flex; align-items: center;">
+            <img src="/assets/images/tactful-logo-colour-on-transparent-200.png" alt="Tactful Engineering Logo" style="height: 40px;">
+            <div style="display: flex; align-items: center; margin-left: 8px; padding-left: 8px; border-left: 1px solid var(--color-border);">
+              <i class="fas fa-cogs" style="font-size: 1.2rem; color: var(--color-primary);"></i>
+              <span style="font-size: 0.8rem; font-weight: 500; margin-left: 4px; color: var(--color-text-light);">ENGINEERING BLOG</span>
+            </div>
+          </div>
+        </a>
+      </div>
+      
+      <nav class="main-nav">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/blog/">Blog</a></li>
+          <li><a href="/jobs/">Jobs</a></li>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/team/">Team</a></li>
+          <li><a href="/contact/">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    {{ content | safe }}
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-column">
+          <h3>Tactful Engineering</h3>
+          <p>Sharing our expertise, experiences, and innovations in engineering with the wider community.</p>
+          <div class="footer-social">
+            <a href="https://github.com/tactful-ai" target="_blank" rel="noopener">
+              <i class="fab fa-github"></i>
+            </a>
+            <a href="https://twitter.com/tactful_ai" target="_blank" rel="noopener">
+              <i class="fab fa-twitter"></i>
+            </a>
+            <a href="https://linkedin.com/company/tactful-ai" target="_blank" rel="noopener">
+              <i class="fab fa-linkedin-in"></i>
+            </a>
+          </div>
+        </div>
+        
+        <div class="footer-column">
+          <h3>Navigation</h3>
+          <ul class="footer-links">
+            <li><a href="/">Home</a></li>
+            <li><a href="/blog/">Blog</a></li>
+            <li><a href="/jobs/">Jobs</a></li>
+            <li><a href="/about/">About</a></li>
+            <li><a href="/team/">Team</a></li>
+            <li><a href="/contact/">Contact</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-column">
+          <h3>Categories</h3>
+          <ul class="footer-links">
+            <li><a href="/categories/backend/">Backend</a></li>
+            <li><a href="/categories/frontend/">Frontend</a></li>
+            <li><a href="/categories/devops/">DevOps</a></li>
+            <li><a href="/categories/ai/">AI & Machine Learning</a></li>
+            <li><a href="/categories/architecture/">Architecture</a></li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p>&copy; {{ site.buildTime | date('yyyy') }} Tactful Engineering. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/js/main.js"></script>
+</body>
+</html>

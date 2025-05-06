@@ -1,0 +1,30 @@
+---
+layout: layouts/base.njk
+---
+
+<section class="section job-details">
+  <div class="container">
+    <a href="/jobs/" class="back-link" style="display: inline-flex; align-items: center; margin-bottom: 2rem; color: var(--color-primary); text-decoration: none;">
+      <i class="fas fa-arrow-left" style="margin-right: 0.5rem;"></i> Back to all positions
+    </a>
+    
+    <div class="job-header" style="margin-bottom: 3rem;">
+      <h1>{{ title }}</h1>
+      <div class="job-meta" style="display: flex; gap: 1.5rem; margin: 1rem 0; color: var(--color-text-light); font-size: 0.875rem;">
+        <div><i class="fas fa-map-marker-alt"></i> {{ location }}</div>
+        <div><i class="fas fa-briefcase"></i> {{ employmentType }}</div>
+        <div><i class="fas fa-clock"></i> Posted: {{ date | date('MMMM d, yyyy') }}</div>
+      </div>
+    </div>
+    
+    <div class="job-content">
+      {{ content | safe }}
+    </div>
+    
+    <div class="job-apply" style="margin-top: 3rem; padding: 2rem; background-color: var(--color-background-alt); border-radius: 8px; text-align: center;">
+      <h2>Interested in this position?</h2>
+      <p>Send your CV and a brief cover letter explaining why you're a good fit for this role.</p>
+      <a href="mailto:careers@tactful.ai?subject=Application for {{ title }}" class="button" style="margin-top: 1rem;">Apply Now</a>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,11 @@
+<nav class="site-navigation">
+  <div class="container">
+    <ul class="nav-list">
+      {% for item in navigation.items %}
+        <li class="nav-item{% if page.url == item.url %} active{% endif %}">
+          <a href="{{ item.url }}">{{ item.text }}</a>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+</nav>

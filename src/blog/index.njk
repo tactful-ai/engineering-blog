@@ -1,0 +1,72 @@
+---
+layout: layouts/base.njk
+title: Blog
+description: Browse all articles from the Tactful Engineering team
+---
+
+<section class="hero" style="padding: 3rem 0;">
+  <div class="container">
+    <div class="hero-content">
+      <h1>Tactful Engineering Blog</h1>
+      <p>Technical insights, tutorials, and best practices from our engineering team.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+      <h2>All Articles</h2>
+      
+      <div class="blog-filters">
+        <label for="tag-filter">Filter by tag:</label>
+        <select id="tag-filter" onchange="window.location.href=this.value">
+          <option value="/blog/">All Tags</option>
+          {% for tag in collections.all | getAllTags | filterTagList %}
+          <option value="/tags/{{ tag | slug }}/">{{ tag }}</option>
+          {% endfor %}
+        </select>
+      </div>
+    </div>
+    
+    {% set postslist = collections.posts | reverse %}
+    {% if postslist.length > 0 %}
+    <div class="posts-list">
+      {% for post in postslist %}
+      <article class="post-item" style="display: flex; gap: 2rem; margin-bottom: 2.5rem; padding-bottom: 2.5rem; border-bottom: 1px solid var(--color-border);">
+        <div class="post-item__image" style="flex: 0 0 250px;">
+          {% if post.data.featured_image %}
+          <img src="{{ post.data.featured_image }}" alt="{{ post.data.title }}" style="width: 100%; height: 180px; object-fit: cover; border-radius: 8px;">
+          {% else %}
+          <img src="/assets/images/post-placeholder.jpg" alt="{{ post.data.title }}" style="width: 100%; height: 180px; object-fit: cover; border-radius: 8px;">
+          {% endif %}
+        </div>
+        
+        <div class="post-item__content">
+          <div class="post-item__date" style="font-size: 0.875rem; color: var(--color-text-light); margin-bottom: 0.5rem;">{{ post.date | readableDate }}</div>
+          <h3 class="post-item__title" style="margin-bottom: 0.75rem;">
+            <a href="{{ post.url }}">{{ post.data.title }}</a>
+          </h3>
+          <p class="post-item__excerpt" style="margin-bottom: 1rem;">{{ post.data.description }}</p>
+          
+          {% if post.data.tags %}
+          <div class="post-item__tags" style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1rem;">
+            {% for tag in post.data.tags | filterTagList %}
+            <a href="/tags/{{ tag | slug }}/" class="post-tag" style="font-size: 0.75rem;">#{{ tag }}</a>
+            {% endfor %}
+          </div>
+          {% endif %}
+          
+          <a href="{{ post.url }}" class="post-item__link" style="font-weight: 500; display: inline-flex; align-items: center;">
+            Read Article
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 16px; height: 16px; margin-left: 4px;"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+          </a>
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+    {% else %}
+    <p>No posts yet!</p>
+    {% endif %}
+  </div>
+</section>
